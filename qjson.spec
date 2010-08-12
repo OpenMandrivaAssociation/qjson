@@ -1,6 +1,6 @@
 Name:		qjson
 Version:	0.7.1
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPLv2+
 Group:		Databases
 URL:		http://qjson.sourceforge.net
