@@ -5,8 +5,9 @@ License:	GPLv2+
 Group:		Databases
 URL:		http://qjson.sourceforge.net
 Source:		http://sourceforge.net/projects/qjson/files/%{name}/%{version}/%{name}-%{version}.tar.bz2
-BuildRequires:	lib64qt4-devel >= 4.0
+BuildRequires:	libqt4-devel >= 4.0
 BuildRequires:	cmake >= 2.6
+BuildRequires:	kde4-macros
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 Summary:	Lightweight data-interchange format
 
