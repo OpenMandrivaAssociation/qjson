@@ -1,6 +1,6 @@
 Name:		qjson
 Version:	0.7.1
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPLv2+
 Group:		Databases
 URL:		http://qjson.sourceforge.net
@@ -18,6 +18,7 @@ QJson is a qt-based library that maps JSON data to QVariant objects: JSON arrays
 
 %package devel
 Summary:	Lightweight data-interchange format - devel
+Group:		Databases
 
 %description -n %{name}-devel
 JSON (JavaScript Object Notation) is a lightweight data-interchange format. It can represents integer, real number, string, an ordered sequence of value, and a collection of name/value pairs.
