@@ -1,56 +1,90 @@
-Name:		qjson
-Version:	0.7.1
-Release:	%mkrel 4
-License:	GPLv2+
-Group:		Databases
-URL:		http://qjson.sourceforge.net
-Source:		http://sourceforge.net/projects/qjson/files/%{name}/%{version}/%{name}-%{version}.tar.bz2
-BuildRequires:	libqt4-devel >= 4.0
-BuildRequires:	cmake >= 2.6
-BuildRequires:	kde4-macros
-BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
-Summary:	Lightweight data-interchange format
+Name:           qjson
+Summary:        QJson is a qt-based library that maps JSON data to QVariant objects
+Version:        0.7.1
+Release:        %mkrel 5
+License:        GPLv2
+Url:            http://qjson.sourceforge.net/
+Group:          Development/C
+BuildRequires:  cmake
+BuildRequires:  qt4-devel
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+Source0:        http://downloads.sourceforge.net/qjson/qjson-%{version}.tar.bz2
 
 %description
-JSON (JavaScript Object Notation) is a lightweight data-interchange format. It can represents integer, real number, string, an ordered sequence of value, and a collection of name/value pairs.
+JSON (JavaScript Object Notation) is a lightweight data-interchange format. 
+It can represents integer, real number, string, an ordered sequence of value, 
+and a collection of name/value pairs.
+QJson is a qt-based library that maps JSON data to QVariant objects.
+JSON arrays will be mapped to QVariantList instances, while JSON's objects 
+will be mapped to QVariantMap.
 
-QJson is a qt-based library that maps JSON data to QVariant objects: JSON arrays will be mapped to QVariantList instances, while JSON objects will be mapped to QVariantMap.
+#--------------------------------------------------------------------
 
-%package devel
-Summary:	Lightweight data-interchange format - devel
-Group:		Databases
+%define major 0
+%define libname %mklibname qjson %{major}
 
-%description -n %{name}-devel
-JSON (JavaScript Object Notation) is a lightweight data-interchange format. It can represents integer, real number, string, an ordered sequence of value, and a collection of name/value pairs.
+%package -n   %{libname}
+Summary:      QJson is a qt-based library that maps JSON data to QVariant objects
+Group:        System/Libraries
+Provides:     %name = %version-%release
+Obsoletes:    %name < 0.7.1-5
 
-QJson is a qt-based library that maps JSON data to QVariant objects: JSON arrays will be mapped to QVariantList instances, while JSON objects will be mapped to QVariantMap.
+%description -n   %{libname}
+JSON (JavaScript Object Notation) is a lightweight data-interchange format.
+It can represents integer, real number, string, an ordered sequence of value,
+and a collection of name/value pairs.
+QJson is a qt-based library that maps JSON data to QVariant objects.
+JSON arrays will be mapped to QVariantList instances, while JSON's objects
+will be mapped to QVariantMap.
 
-Devel package
+%files -n   %{libname}
+%defattr(-,root,root)
+%_libdir/libqjson.so.%{major}*
 
-%files
-%defattr (-,root,root)
-%doc COPYING README INSTALL
-%{_libdir}/lib*
+#--------------------------------------------------------------------
 
-%files -n %{name}-devel
-%defattr (-,root,root)
-%doc COPYING README INSTALL
-%{_includedir}/%{name}
-%{_kde_appsdir}/cmake/modules/FindQJSON.cmake
-%{_libdir}/pkgconfig/*
+%define develname %mklibname -d qjson
+
+%package -n %{develname}
+Summary:      Development files for QJson
+Group:        Development/C
+Requires:     %libname = %version-%release
+Provides:     %name-devel = %version-%release
+Obsoletes:    %{name}-devel < 0.7.1-5
+Conflicts:    qjson < 0.7.1-5
+
+%description -n %{develname}
+JSON (JavaScript Object Notation) is a lightweight data-interchange format.
+It can represents integer, real number, string, an ordered sequence of value,
+and a collection of name/value pairs.
+QJson is a qt-based library that maps JSON data to QVariant objects.
+JSON arrays will be mapped to QVariantList instances, while JSON's objects
+will be mapped to QVariantMap.
+
+This package contains files for developing applications using 
+QJson.
+
+%files -n %{develname}
+%defattr(-,root,root)
+%_libdir/libqjson.so
+%_libdir/pkgconfig/QJson.pc
+%_datadir/apps/cmake/modules/FindQJSON.cmake
+%_includedir/qjson
 
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}
+%setup -q -n qjson
 
 %build
-%cmake_kde4
+%cmake_qt4
 %make
 
 %install
 rm -rf %{buildroot}
+
 %makeinstall_std -C build
 
-%clean 
-rm -rf %{buildroot}
+%clean
+rm -rf %buildroot
+
