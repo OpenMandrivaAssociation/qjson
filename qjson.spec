@@ -1,7 +1,7 @@
 Name:           qjson
 Summary:        QJson is a qt-based library that maps JSON data to QVariant objects
 Version:        0.7.1
-Release:        %mkrel 6
+Release:        %mkrel 7
 License:        GPLv2
 Url:            http://qjson.sourceforge.net/
 Group:          Development/C
@@ -87,4 +87,24 @@ rm -rf %{buildroot}
 
 %clean
 rm -rf %buildroot
+
+
+
+%changelog
+* Thu May 05 2011 Oden Eriksson <oeriksson@mandriva.com> 0.7.1-6mdv2011.0
++ Revision: 669381
+- mass rebuild
+
+* Sun Sep 05 2010 Funda Wang <fwang@mandriva.org> 0.7.1-5mdv2011.0
++ Revision: 576084
+- correct package name
+
+* Fri Aug 13 2010 Bruno Cornec <bcornec@mandriva.org> 0.7.1-4mdv2011.0
++ Revision: 569402
+- Add Group for package devel which prevents upload
+- And bump release tag :-(
+- Adds missing deps for chroot build) - rpm macros for cmake
+- Split in 2 packages for correct dependencies management (main and devel)
+- Addition of the qjson package to improve support of tellico
+- create qjson
 
