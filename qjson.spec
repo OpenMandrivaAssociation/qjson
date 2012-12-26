@@ -1,14 +1,13 @@
 Name:           qjson
 Summary:        QJson is a qt-based library that maps JSON data to QVariant objects
-Version:        0.7.1
-Release:        %mkrel 7
+Version:        0.8.1
+Release:        1
 License:        GPLv2
 Url:            http://qjson.sourceforge.net/
 Group:          Development/C
 BuildRequires:  cmake
 BuildRequires:  qt4-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-Source0:        http://downloads.sourceforge.net/qjson/qjson-%{version}.tar.bz2
+Source0:        http://freefr.dl.sourceforge.net/project/qjson/qjson/%version/qjson-%version.tar.bz2
 
 %description
 JSON (JavaScript Object Notation) is a lightweight data-interchange format. 
@@ -26,8 +25,8 @@ will be mapped to QVariantMap.
 %package -n   %{libname}
 Summary:      QJson is a qt-based library that maps JSON data to QVariant objects
 Group:        System/Libraries
-Provides:     %name = %version-%release
-Obsoletes:    %name < 0.7.1-5
+Provides:     %name = %EVRD
+Obsoletes:    %name < %EVRD
 
 %description -n   %{libname}
 JSON (JavaScript Object Notation) is a lightweight data-interchange format.
@@ -48,10 +47,10 @@ will be mapped to QVariantMap.
 %package -n %{develname}
 Summary:      Development files for QJson
 Group:        Development/C
-Requires:     %libname = %version-%release
-Provides:     %name-devel = %version-%release
-Obsoletes:    %{name}-devel < 0.7.1-5
-Conflicts:    qjson < 0.7.1-5
+Requires:     %libname = %EVRD
+Provides:     %name-devel = %EVRD
+Obsoletes:    %{name}-devel < %EVRD
+Conflicts:    qjson < %EVRD
 
 %description -n %{develname}
 JSON (JavaScript Object Notation) is a lightweight data-interchange format.
@@ -68,13 +67,13 @@ QJson.
 %defattr(-,root,root)
 %_libdir/libqjson.so
 %_libdir/pkgconfig/QJson.pc
-%_datadir/apps/cmake/modules/FindQJSON.cmake
+%_libdir/cmake/%name
 %_includedir/qjson
 
 #--------------------------------------------------------------------
 
 %prep
-%setup -q -n qjson
+%setup -q
 
 %build
 %cmake_qt4
@@ -84,11 +83,6 @@ QJson.
 rm -rf %{buildroot}
 
 %makeinstall_std -C build
-
-%clean
-rm -rf %buildroot
-
-
 
 %changelog
 * Thu May 05 2011 Oden Eriksson <oeriksson@mandriva.com> 0.7.1-6mdv2011.0
