@@ -1,13 +1,15 @@
+%define major 1
+%define upstreamver %(echo %{version} |sed -e 's,\\\.,_,g')
 Summary:	QJson is a qt-based library that maps JSON data to QVariant objects
 Name:		qjson
-Version:	0.8.1
-Release:	12
+Version:	1.0.0
+Release:	1
 License:	GPLv2
 Group:		Development/C
 Url:		http://qjson.sourceforge.net/
-Source0:	http://freefr.dl.sourceforge.net/project/qjson/qjson/%{version}/qjson-%{version}.tar.bz2
-BuildRequires:	cmake
-BuildRequires:	qt4-devel
+Source0:	https://github.com/flavio/qjson/archive/%{upstreamver}.tar.gz
+BuildRequires:	cmake ninja
+BuildRequires:	pkgconfig(Qt5Core)
 
 %description
 JSON (JavaScript Object Notation) is a lightweight data-interchange format. 
@@ -19,7 +21,6 @@ will be mapped to QVariantMap.
 
 #--------------------------------------------------------------------
 
-%define major 0
 %define libname %mklibname qjson %{major}
 
 %package -n   %{libname}
@@ -64,12 +65,12 @@ QJson.
 #--------------------------------------------------------------------
 
 %prep
-%setup -q
+%autosetup -n %{name}-%{upstreamver}
 
 %build
-%cmake_qt4
-%make
+%cmake \
+	-G Ninja
+%ninja_build
 
 %install
-%makeinstall_std -C build
-
+%ninja_install -C build
