@@ -9,6 +9,7 @@ Group:		Development/C
 Url:		http://qjson.sourceforge.net/
 Source0:	https://github.com/flavio/qjson/archive/%{upstreamver}.tar.gz
 BuildRequires:	cmake ninja
+BuildRequires:	qmake5
 BuildRequires:	pkgconfig(Qt5Core)
 
 %description
