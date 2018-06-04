@@ -1,0 +1,13 @@
+diff -up qjson-1_0_0/QJson.pc.in.omv~ qjson-1_0_0/QJson.pc.in
+--- qjson-1_0_0/QJson.pc.in.omv~	2018-06-04 08:51:29.729370750 +0200
++++ qjson-1_0_0/QJson.pc.in	2018-06-04 08:51:45.356371606 +0200
+@@ -6,6 +6,5 @@ includedir=@INCLUDE_INSTALL_DIR@
+ Name: QJson
+ Description: QJson is a qt-based library that maps JSON data to QVariant objects
+ Version: @QJSON_LIB_MAJOR_VERSION@.@QJSON_LIB_MINOR_VERSION@.@QJSON_LIB_PATCH_VERSION@
+-Requires: QtCore
+-Libs: -L${libdir} -lqjson
+-Cflags: -I${includedir}
+\ No newline at end of file
++Requires: Qt5Core
++Libs: -lqjson
