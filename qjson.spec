@@ -3,7 +3,7 @@
 Summary:	QJson is a qt-based library that maps JSON data to QVariant objects
 Name:		qjson
 Version:	1.0.0
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		Development/C
 Url:		http://qjson.sourceforge.net/
