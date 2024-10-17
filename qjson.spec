@@ -6,7 +6,7 @@ Version:	1.0.0
 Release:	4
 License:	GPLv2
 Group:		Development/C
-Url:		http://qjson.sourceforge.net/
+Url:		https://qjson.sourceforge.net/
 Source0:	https://github.com/flavio/qjson/archive/%{upstreamver}.tar.gz
 Patch0:		qjson-1.0.0-fix-pkgconfig.patch
 BuildRequires:	cmake ninja
